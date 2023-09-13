@@ -3,6 +3,7 @@ const User = require("./model/PersonModel");
 const connectDB = require("./config/database");
 const app = express();
 const personRoute = require("./routes/person");
+const mainRoute = require("./routes/main");
 //Use .env file
 require("dotenv").config({ path: "./config/.env" });
 
@@ -14,7 +15,8 @@ const PORT = process.env.PORT;
 // Connect to database
 connectDB();
 
-app.use("/api", personRoute);
+app.use("/api", mainRoute);
+app.use("/api/persons", personRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running away on port ${PORT}`);
